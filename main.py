@@ -1,5 +1,4 @@
 import pygame.mouse
-from pygame.locals import *
 from Board import Board
 
 if __name__ == "__main__":

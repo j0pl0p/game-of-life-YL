@@ -12,7 +12,7 @@ class Board:
         # значения по умолчанию
         self.left = 10
         self.top = 10
-        self.cell_size = 10
+        self.cell_size = 30
 
     def get_cell(self, pos):
         '''pos: (width_pixel, height_pixel)
@@ -50,8 +50,7 @@ class Board:
                                      (i * self.cell_size,
                                       j * self.cell_size,
                                       self.cell_size,
-                                      self.cell_size),
-                                     4)
+                                      self.cell_size), 2)
 
     def next_cell_gen(self, x: int, y: int) -> bool:
         neighbors = 0

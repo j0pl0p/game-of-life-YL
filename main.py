@@ -12,7 +12,7 @@ if __name__ == "__main__":
     clock = pygame.time.Clock()
     b_color = (0, 0, 0)
 
-    board = Board(width, height)
+    board = Board(20, 20)
 
     while running:
         screen.fill(b_color)

@@ -3,9 +3,6 @@ import pygame.mouse
 from Board import Board
 
 
-
-
-
 def draw_text(screen, size):
     screen.fill("black")
     font = pygame.font.Font(None, 50)

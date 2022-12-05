@@ -25,14 +25,15 @@ class Board:
             return width // self.cell_size, height // self.cell_size
         return None, None
 
-    def set_life(self, event: pg.event):
+    def set_life(self, event: pg.event) -> None:
         if event.type == MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
-
-            if event.button == 1:
-                self.matrix[self.get_cell(pos)] = True
-            elif event.button == 3:
-                self.matrix[self.get_cell(pos)] = False
+            x, y = self.get_cell(pos)
+            if x is not None and y is not None:
+                if event.button == 1:
+                    self.matrix[x][y] = True
+                elif event.button == 3:
+                    self.matrix[x][y] = False
 
     def render(self, screen):
         '''рисует доску на экране screen'''

@@ -19,6 +19,7 @@ if __name__ == "__main__":
             if event.type == pygame.QUIT:
                 running = False
         board.render(screen)
+        board.next_gen()
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()

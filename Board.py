@@ -1,3 +1,5 @@
+import pygame
+
 class Board:
     # создание поля
     def __init__(self, width, height):
@@ -18,3 +20,22 @@ class Board:
                 and 0 <= height <= self.height * self.cell_size):
             return width // self.cell_size, height // self.cell_size
         return None, None
+
+    def render(self, screen):
+        '''рисует доску на экране screen'''
+        for i in range(self.height):
+            for j in range(self.width):
+                if self.matrix[i][j]:
+                    pygame.draw.rect(screen, (250, 250, 250),
+                                     (i * self.cell_size,
+                                      j * self.cell_size,
+                                      self.cell_size,
+                                      self.cell_size))
+                else:
+                    pygame.draw.rect(screen, (250, 250, 250),
+                                     (i * self.cell_size,
+                                      j * self.cell_size,
+                                      self.cell_size,
+                                      self.cell_size),
+                                     4)
+

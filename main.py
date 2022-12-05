@@ -15,6 +15,6 @@ class Board:
             pos = pygame.mouse.get_pos()
 
             if event.button == 1:
-                self.matrix[get_cell(pos)] = True
+                self.matrix[self.get_cell(pos)] = True
             elif event.button == 3:
-                self.matrix[get_cell(pos)] = False
+                self.matrix[self.get_cell(pos)] = False

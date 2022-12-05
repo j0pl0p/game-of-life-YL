@@ -11,11 +11,15 @@ if __name__ == "__main__":
     fps = 100
     clock = pygame.time.Clock()
     b_color = (0, 0, 0)
+
+    board = Board(width, height)
+
     while running:
         screen.fill(b_color)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+        board.render(screen)
         clock.tick(fps)
         pygame.display.flip()
     pygame.quit()

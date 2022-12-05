@@ -1,7 +1,6 @@
-import pygame as pg
 import pygame.mouse
 from pygame.locals import *
-import Board
+from Board import Board
 
 if __name__ == "__main__":
     pygame.init()

@@ -1,6 +1,7 @@
-import pygame
+import pygame as pg
 import pygame.mouse
 from pygame.locals import *
+from copy import deepcopy
 
 
 class Board:
@@ -24,6 +25,15 @@ class Board:
             return width // self.cell_size, height // self.cell_size
         return None, None
 
+    def set_life(self, event: pg.event):
+        if event.type == MOUSEBUTTONDOWN:
+            pos = pygame.mouse.get_pos()
+
+            if event.button == 1:
+                self.matrix[self.get_cell(pos)] = True
+            elif event.button == 3:
+                self.matrix[self.get_cell(pos)] = False
+
     def render(self, screen):
         '''рисует доску на экране screen'''
         for i in range(self.height):
@@ -42,11 +52,24 @@ class Board:
                                       self.cell_size),
                                      4)
 
-    def set_life(self, event: pygame.event):
-        if event.type == MOUSEBUTTONDOWN:
-            pos = pygame.mouse.get_pos()
+    def next_cell_gen(self, x: int, y: int) -> bool:
+        neighbors = 0
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if x != 0 or y != 0:
+                    try:
+                        neighbors += self.matrix[x + i][y + j]
+                    except IndexError:
+                        continue
+        if self.matrix[x][y]:
+            return neighbors == 2 or neighbors == 3
+        else:
+            return neighbors == 3
 
-            if event.button == 1:
-                self.matrix[self.get_cell(pos)] = True
-            elif event.button == 3:
-                self.matrix[self.get_cell(pos)] = False
+    def next_gen(self) -> None:
+        matrix = []
+        for i in range(self.width):
+            matrix.append([])
+            for j in range(self.height):
+                matrix[i].append(self.next_cell_gen(i, j))
+        self.matrix = deepcopy(matrix)
